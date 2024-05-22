@@ -2,12 +2,14 @@
 const sound = document.getElementById('sound-on-off');
 const on = document.querySelector('.sound-on');
 let onClasses;
+
 if (on) {
   onClasses = on.classList;
   on.classList.add('hidden');
 }
 const off = document.querySelector('.sound-off');
 let offClasses;
+
 if (off) {
   offClasses = off.classList;
 }
@@ -24,7 +26,7 @@ let isMuted = true
 
 // Function to toggle mute/unmute state
 function toggleMute() {
-      onClasses.toggle('hidden');
+    onClasses.toggle('hidden');
   offClasses.toggle('hidden');
   // Toggle mute state
   if (isMuted === true) {

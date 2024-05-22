@@ -1,28 +1,45 @@
+// CUSTOM FUNCTION TO PLAY SOUND - ON / OFF
 const sound = document.getElementById('sound-on-off');
-  const on = document.querySelector('.sound-on');
-  const onClasses = on.classList;
-  const off = document.querySelector('.sound-off');
-  const offClasses = off.classList;
-  on.classList.add('hidden');
-  const iframe =  document.getElementById('vimeo-player-10');
-  const vimeoPlayer = new Vimeo.Player(iframe)
+const on = document.querySelector('.sound-on');
+let onClasses;
 
-	let isMuted = true
-  vimeoPlayer.setVolume(0);
-  // Function to toggle mute/unmute state
-  function toggleMute() {
-		onClasses.toggle('hidden');
-    offClasses.toggle('hidden');
-    // Toggle mute state
-    if (isMuted === true) {
-      // If muted, unmute the video
-      vimeoPlayer.setVolume(0.5);
-      isMuted = false
-    } else {
-      // If not muted, mute the video
-      vimeoPlayer.setVolume(0);
-      isMuted = true
-    }
+if (on) {
+  onClasses = on.classList;
+  on.classList.add('hidden');
+}
+const off = document.querySelector('.sound-off');
+let offClasses;
+
+if (off) {
+  offClasses = off.classList;
+}
+
+const iframe1 =  document.getElementById('vimeo-player-10');
+let vimeoPlayer = null;
+if (iframe1) {
+  vimeoPlayer = new Vimeo.Player(iframe1)
+  if (vimeoPlayer) {
+     vimeoPlayer.setVolume(0);
   }
-  // Add click event listener to the Vimeo iframe
-  sound.addEventListener('click', toggleMute);
+}
+let isMuted = true
+
+// Function to toggle mute/unmute state
+function toggleMute() {
+    onClasses.toggle('hidden');
+  offClasses.toggle('hidden');
+  // Toggle mute state
+  if (isMuted === true) {
+    // If muted, unmute the video
+    vimeoPlayer.setVolume(0.5);
+    isMuted = false
+  } else {
+    // If not muted, mute the video
+    vimeoPlayer.setVolume(0);
+    isMuted = true
+  }
+}
+// Add click event listener to the Vimeo iframe
+if (sound) {
+    sound.addEventListener('click', toggleMute);
+}
